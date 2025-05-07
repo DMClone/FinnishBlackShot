@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class DrawCards : MonoBehaviour
 {
     public List<GameObject> hand = new List<GameObject>();
     public int count;

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Player player1;
-    [SerializeField] private Player player2;
+    [SerializeField] private DrawCards player1;
+    [SerializeField] private DrawCards player2;
 
-    [SerializeField] private Player currentPlayer;
+    [SerializeField] private DrawCards currentPlayer;
     private bool gameOver = false;
 
     private void Start()

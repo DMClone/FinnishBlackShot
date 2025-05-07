@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
         player1.NewStart();
         player2.NewStart();
         currentPlayer = player1;
+        player1.playerText.color = Color.green;
+        player2.playerText.color = Color.red;
     }
 
     private void Update()
@@ -53,7 +56,9 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
+            currentPlayer.playerText.color = Color.red;
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            currentPlayer.playerText.color = Color.green;
 
             if (!currentPlayer.stand)
             {

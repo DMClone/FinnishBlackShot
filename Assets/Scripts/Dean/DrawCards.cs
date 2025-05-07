@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DrawCards : MonoBehaviour
@@ -6,6 +7,7 @@ public class DrawCards : MonoBehaviour
     public List<GameObject> hand = new List<GameObject>();
     public int count;
     public bool stand;
+    public TextMeshProUGUI playerText;
 
     [SerializeField] private Deck deck;
     [SerializeField] private Transform handAnchor;

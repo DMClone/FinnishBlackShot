@@ -27,26 +27,36 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (currentPlayer.stand || currentPlayer.AceValueChoice.activeSelf) return;
-
-            currentPlayer.DrawCard();
-            if (currentPlayer.AceValueChoice.activeSelf) return;
-
-            if (currentPlayer.count > 21)
-            {
-                currentPlayer.stand = true;
-                EndGame();
-                return;
-            }
-
-            SwitchTurn();
+            CheckDraw();
         }
 
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            currentPlayer.stand = true;
-            SwitchTurn();
+            Stand();
         }
+    }
+
+    public void CheckDraw()
+    {
+        if (currentPlayer.stand || currentPlayer.AceValueChoice.activeSelf) return;
+
+        currentPlayer.DrawCard();
+        if (currentPlayer.AceValueChoice.activeSelf) return;
+
+        if (currentPlayer.count > 21)
+        {
+            currentPlayer.stand = true;
+            EndGame();
+            return;
+        }
+
+        SwitchTurn();
+    }
+
+    public void Stand()
+    {
+        currentPlayer.stand = true;
+        SwitchTurn();
     }
 
     private void SwitchTurn()

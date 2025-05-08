@@ -50,11 +50,11 @@ public class PlayerCamera : MonoBehaviour
 
     private void MouseCameraMove()
     {
-        throw new NotImplementedException();
+        
     }
 
     private void GamePadCameraMove()
     {
-        throw new NotImplementedException();
+
     }
 }

@@ -1,14 +1,17 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private DrawCards player1;
-    [SerializeField] private DrawCards player2;
-    [SerializeField] private TextMeshProUGUI player1GameOverText;
-    [SerializeField] private TextMeshProUGUI player2GameOverText;
+    public static GameManager Instance { get; private set; } // Singleton instance
+
+    private DrawCards player1 = null;
+    private DrawCards player2 = null;
+    private TextMeshProUGUI player1GameOverText, player1Text;
+    private TextMeshProUGUI player2GameOverText, player2Text;
     [SerializeField] private Shotgun shotgun;
     [SerializeField] private GameObject restartButton;
 
@@ -18,32 +21,70 @@ public class GameManager : MonoBehaviour
     private DrawCards wonPlayer;
     private int animationNumber;
 
-    private void Start()
+    private void Awake()
+    {
+        // Singleton pattern implementation
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Multiple GameManager instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        PlayerManager.Instance.playerInputManager.onPlayerJoined += OnPlayerJoined;
+    }
+
+    private void OnDisable()
+    {
+        PlayerManager.Instance.playerInputManager.onPlayerJoined -= OnPlayerJoined;
+    }
+
+    public void OnPlayerJoined(PlayerInput input)
+    {
+        if (player1 == null)
+        {
+            player1 = input.gameObject.GetComponent<DrawCards>();
+            player1GameOverText = player1.GetComponent<DrawCards>().gameOverText;
+            player1Text = player1.GetComponent<DrawCards>().playerText;
+        }
+        else if (player2 == null)
+        {
+            player2 = input.gameObject.GetComponent<DrawCards>();
+            player2GameOverText = player2.GetComponent<DrawCards>().gameOverText;
+            player2Text = player2.GetComponent<DrawCards>().playerText;
+        }
+        else
+        {
+            Debug.LogError("Two players already joined.");
+            return;
+        }
+    }
+
+    public void StartGame()
     {
         NextRound();
     }
 
-    private void Update()
+    private bool CheckPlayer(GameObject player)
+    {
+        return currentPlayer.gameObject == player;
+    }
+
+    public void CheckDraw(GameObject player)
     {
         if (gameOver) return;
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            CheckDraw();
-        }
+        Debug.Log(player);
+        if (CheckPlayer(player)) return;
+        if (currentPlayer.stand || currentPlayer.aceValueChoice.activeSelf) return;
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            Stand();
-        }
-    }
-
-    public void CheckDraw()
-    {
-        if (currentPlayer.stand || currentPlayer.AceValueChoice.activeSelf) return;
-
+        Debug.Log(currentPlayer.name);
         currentPlayer.DrawCard();
-        if (currentPlayer.AceValueChoice.activeSelf) return;
+        if (currentPlayer.aceValueChoice.activeSelf) return;
 
         if (currentPlayer.count > 21)
         {
@@ -55,8 +96,11 @@ public class GameManager : MonoBehaviour
         SwitchTurn();
     }
 
-    public void Stand()
+    public void Stand(GameObject player)
     {
+        if (gameOver) return;
+        if (CheckPlayer(player)) return;
+        
         currentPlayer.stand = true;
         SwitchTurn();
     }
@@ -115,10 +159,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CheckShotGun());
     }
 
-    public void AceValue(int v)
+    public void AceValue(GameObject player, int v)
     {
+        Debug.Log(currentPlayer.name);
+        if (currentPlayer.gameObject == player || !currentPlayer.aceValueChoice.activeSelf) return;
         currentPlayer.count += v;
-        currentPlayer.AceValueChoice.SetActive(false);
+        currentPlayer.aceValueChoice.SetActive(false);
         if (currentPlayer.count > 21)
         {
             currentPlayer.stand = true;
@@ -167,8 +213,8 @@ public class GameManager : MonoBehaviour
         else
         {
             currentPlayer = player1;
-            player1.playerText.color = Color.green;
-            player2.playerText.color = Color.red;
+            player1Text.color = Color.green;
+            player2Text.color = Color.red;
         }
         player1.NewStart();
         player2.NewStart();

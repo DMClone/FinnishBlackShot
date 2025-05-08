@@ -10,10 +10,10 @@ public class PlayerInputHandler : MonoBehaviour
     [HideInInspector] public InputAction hit, pas, look, leftArrow, rightArrow;
 
     // Events for the actions
-    public event System.Action OnHitPerformed;
-    public event System.Action OnPasPerformed;
-    public event System.Action OnLeftArrowPerformed;
-    public event System.Action OnRightArrowPerformed;
+    public event System.Action<GameObject> OnHitPerformed;
+    public event System.Action<GameObject> OnPasPerformed;
+    public event System.Action<GameObject, int> OnLeftArrowPerformed;
+    public event System.Action<GameObject, int> OnRightArrowPerformed;
     public event System.Action<Vector2> OnLookPerformed;
 
     private void Awake()
@@ -33,9 +33,15 @@ public class PlayerInputHandler : MonoBehaviour
         // Subscribe to input action events
         hit.performed += context => HandleAction(context, OnHitPerformed);
         pas.performed += context => HandleAction(context, OnPasPerformed);
-        leftArrow.performed += context => HandleAction(context, OnLeftArrowPerformed);
-        rightArrow.performed += context => HandleAction(context, OnRightArrowPerformed);
+        leftArrow.performed += OnLeftArrowAction; // Use dedicated method for left arrow
+        rightArrow.performed += OnRightArrowAction; // Use dedicated method for right arrow
         look.performed += context => HandleAction(context, OnLookPerformed);
+
+        // Subscribe to GameManager methods
+        OnHitPerformed += GameManager.Instance.CheckDraw;
+        OnPasPerformed += GameManager.Instance.Stand;
+        OnLeftArrowPerformed += GameManager.Instance.AceValue;
+        OnRightArrowPerformed += GameManager.Instance.AceValue;
     }
 
     private void OnDisable()
@@ -43,14 +49,26 @@ public class PlayerInputHandler : MonoBehaviour
         // Unsubscribe from input action events
         hit.performed -= context => HandleAction(context, OnHitPerformed);
         pas.performed -= context => HandleAction(context, OnPasPerformed);
-        leftArrow.performed -= context => HandleAction(context, OnLeftArrowPerformed);
-        rightArrow.performed -= context => HandleAction(context, OnRightArrowPerformed);
+        leftArrow.performed -= OnLeftArrowAction; // Unsubscribe dedicated method
+        rightArrow.performed -= OnRightArrowAction; // Unsubscribe dedicated method
         look.performed -= context => HandleAction(context, OnLookPerformed);
     }
 
-    private void HandleAction(InputAction.CallbackContext context, System.Action action)
+    private void HandleAction(InputAction.CallbackContext context, System.Action<GameObject> action)
     {
-        action?.Invoke();
+        action?.Invoke(gameObject);
+    }
+
+    private void OnLeftArrowAction(InputAction.CallbackContext context)
+    {
+        // Invoke the event with a hardcoded value of 1
+        OnLeftArrowPerformed?.Invoke(gameObject, 1);
+    }
+
+    private void OnRightArrowAction(InputAction.CallbackContext context)
+    {
+        // Invoke the event with a hardcoded value of 11
+        OnRightArrowPerformed?.Invoke(gameObject, 11);
     }
 
     private void HandleAction(InputAction.CallbackContext context, System.Action<Vector2> action)
@@ -58,7 +76,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (action != null)
         {
             Vector2 input = context.ReadValue<Vector2>();
-            Debug.Log(input);
             action.Invoke(input);
         }
     }

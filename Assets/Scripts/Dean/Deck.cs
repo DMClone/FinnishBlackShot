@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    public static Deck Instance { get; private set; } // Singleton instance
+
     public List<GameObject> cards = new List<GameObject>();
+
+    private void Awake()
+    {
+        // Singleton pattern implementation
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Multiple Deck instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {

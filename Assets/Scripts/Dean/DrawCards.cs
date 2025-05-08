@@ -7,19 +7,27 @@ public class DrawCards : MonoBehaviour
     public List<GameObject> hand = new List<GameObject>();
     public int count;
     public bool stand;
-    public TextMeshProUGUI playerText;
-    public GameObject AceValueChoice;
+    public TextMeshProUGUI playerText, gameOverText;
+    public GameObject aceValueChoice;
 
-    [SerializeField] private Deck deck;
+    private Deck deck;
     [SerializeField] private Transform handAnchor;
     [SerializeField] private float cardSpacing = 1.5f;
     [SerializeField] private TextMeshProUGUI currentValueText;
 
     public Card currentCard;
 
+    public Canvas canvas;
+
     private void Start()
     {
-        AceValueChoice.SetActive(false);
+        deck = Deck.Instance;
+        //GameObject canvas = Instantiate(canvasPrefab, transform.position, Quaternion.identity);
+        //GetPlayerCanvasValues canvasValues = canvas.GetComponent<GetPlayerCanvasValues>();
+        //playerText = canvasValues.playerText;
+        //currentValueText = canvasValues.CurrentValueText;
+        //aceValueChoice = canvasValues.aceValueObject;
+        aceValueChoice.SetActive(false);
     }
 
     private void Update()
@@ -45,7 +53,7 @@ public class DrawCards : MonoBehaviour
         currentCard = newCard.GetComponent<Card>();
         if (currentCard.value == 0)
         {
-            AceValueChoice.SetActive(true);
+            aceValueChoice.SetActive(true);
             hand.Add(newCard);
             deck.cards.RemoveAt(0);
             return;

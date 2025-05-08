@@ -98,17 +98,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e3f47e93-9125-4741-a172-e75d2d7e9e9f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "DrawCard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bbf4d33f-af7f-4087-a63a-551140a56759",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
@@ -125,17 +114,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Pass",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7340427f-b83b-41bd-b10b-7b4af30b7dde",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
                     "action": "Pass",
                     "isComposite": false,
                     "isPartOfComposite": false

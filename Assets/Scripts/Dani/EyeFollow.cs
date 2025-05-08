@@ -11,7 +11,7 @@ public class EyeFollow : MonoBehaviour
 {
     [SerializeField] private Transform downTrans, otherPlayerTrans;
 
-    [SerializeField] private int _speed;
+    [SerializeField] private float _speed;
     public LookingDir lookingDir;
 
     public void LookDown()
@@ -33,7 +33,7 @@ public class EyeFollow : MonoBehaviour
         else
             targetPosition = (otherPlayerTrans.position - gameObject.transform.position).normalized;
 
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetPosition, Time.deltaTime, 0.0F);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetPosition, _speed * Time.deltaTime, 0.0F);
 
         transform.rotation = Quaternion.LookRotation(newDir);
 

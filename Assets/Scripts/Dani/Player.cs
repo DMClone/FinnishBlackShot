@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public PlayerInput _playerInput;
 
-    private void Awake()
+    private void OnEnable()
     {
         InputAction PlayerPlay = InputSystem.actions.FindAction("Play");
         PlayerPlay.performed += ActionOne;

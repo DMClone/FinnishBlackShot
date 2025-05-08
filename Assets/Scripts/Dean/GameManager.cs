@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private bool gameOver = false;
     private DrawCards lostPlayer;
     private DrawCards wonPlayer;
+    private int animationNumber;
 
     private void Start()
     {
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
             player2GameOverText.text = "You Lost!";
             lostPlayer = player2;
             wonPlayer = player1;
+            animationNumber = 2;
         }
         else if (p2 > p1)
         {
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
             player1GameOverText.text = "You Lost!";
             lostPlayer = player1;
             wonPlayer = player2;
+            animationNumber = 1;
         }
         else
         {
@@ -106,8 +110,9 @@ public class GameManager : MonoBehaviour
             player2GameOverText.text = "It's a Tie!";
             lostPlayer = null;
             wonPlayer = null;
+            animationNumber = 0;
         }
-        CheckShotGun();
+        StartCoroutine(CheckShotGun());
     }
 
     public void AceValue(int v)
@@ -123,9 +128,23 @@ public class GameManager : MonoBehaviour
         SwitchTurn();
     }
 
-    private void CheckShotGun()
+    private IEnumerator CheckShotGun()
     {
-        if (lostPlayer == null) return;
+        if (lostPlayer == null)
+        {
+            yield return new WaitForSeconds(1);
+            NextRound();
+            yield break;
+        }
+
+        shotgun.shotgunAnimator.SetInteger("Who", animationNumber);
+        yield return new WaitForSeconds(0.2f);
+        AnimatorStateInfo stateInfo = shotgun.shotgunAnimator.GetCurrentAnimatorStateInfo(0);
+        float animationLength = stateInfo.length;
+        yield return new WaitForSeconds(animationLength);
+
+        animationNumber = 0;
+        shotgun.shotgunAnimator.SetInteger("Who", animationNumber);
         if (shotgun.shots[0] == true)
         {
             restartButton.SetActive(true);

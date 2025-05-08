@@ -7,6 +7,7 @@ public class Shotgun : MonoBehaviour
     public int totalRounds = 5;
     public int loadedRounds = 1;
     public List<bool> shots = new List<bool>();
+    public Animator shotgunAnimator;
 
     private void Start()
     {

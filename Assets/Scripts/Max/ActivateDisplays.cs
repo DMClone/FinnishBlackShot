@@ -1,17 +1,44 @@
 using UnityEngine;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Unity.VisualScripting;
 
 public class ActivateDisplays : MonoBehaviour
 {
+    [SerializeField] private List<Camera> playerCameras = new();
+
+    [SerializeField] private Camera startCamera;
+
     private void Start()
     {
-        SetUpDisplays();
+        foreach(Camera cam in playerCameras)
+        {
+            cam.enabled = false;
+        }
     }
     public void SetUpDisplays()
     {
-        Debug.Log("Displays connected: " + Display.displays.Length);
-        for (int i = 1; i < Display.displays.Length; i++)
+        if (Display.displays.Length > 1)
         {
-            Display.displays[i].Activate();
+            // Multiple screens
+            for (int i = 0; i < playerCameras.Count && i < Display.displays.Length; i++)
+            {
+                Display.displays[i].Activate();
+                playerCameras[i].enabled = true;
+                playerCameras[i].targetDisplay = i;
+            }
         }
+        else
+        {
+            // Splitscreen
+            int cameraCount = playerCameras.Count;
+            for (int i = 0; i < cameraCount; i++)
+            {
+                playerCameras[i].targetDisplay = 0;
+                float width = 1f / cameraCount;
+                playerCameras[i].rect = new Rect(i * width, 0, width, 1);
+            }
+        }
+        startCamera.enabled = false;
     }
 }

@@ -712,7 +712,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1271122468}
   - component: {fileID: 1271122467}
-  - component: {fileID: 1271122466}
   - component: {fileID: 1271122469}
   m_Layer: 0
   m_Name: Camera Player 1
@@ -721,14 +720,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1271122466
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271122465}
-  m_Enabled: 1
 --- !u!20 &1271122467
 Camera:
   m_ObjectHideFlags: 0
@@ -986,7 +977,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609185703}
   - component: {fileID: 1609185704}
-  - component: {fileID: 1609185706}
   - component: {fileID: 1609185705}
   m_Layer: 0
   m_Name: Display
@@ -1039,36 +1029,6 @@ MonoBehaviour:
   - {fileID: 1271122467}
   - {fileID: 1970989632}
   startCamera: {fileID: 1385201466}
---- !u!114 &1609185706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609185700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1970989629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1039,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1970989633}
   - component: {fileID: 1970989632}
-  - component: {fileID: 1970989631}
   - component: {fileID: 1970989630}
   m_Layer: 0
   m_Name: Camera Player 2
@@ -1132,14 +1091,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1970989631
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970989629}
-  m_Enabled: 1
 --- !u!20 &1970989632
 Camera:
   m_ObjectHideFlags: 0
@@ -1216,6 +1167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032836012}
   - component: {fileID: 2032836011}
+  - component: {fileID: 2032836013}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -1235,10 +1187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_NotificationBehavior: 3
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
-  m_JoinBehavior: 2
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1263,9 +1215,17 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Join
         m_Flags: 0
+      - m_Name: 
+        m_Id: 87d2bd0e-9ccf-4abc-b3b6-8274afe7b44d
+        m_Path: <Keyboard>/space
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 8990415511214525819, guid: 6bad8a7e591ba05498f5e743a6097e9a, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -1290,6 +1250,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032836013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032836010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0133a7ea34195a94b90ac3b3dc0e98df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameras:
+  - {fileID: 1271122467}
+  - {fileID: 1970989632}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

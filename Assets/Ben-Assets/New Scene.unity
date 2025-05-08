@@ -5087,7 +5087,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1de0cca7633d0464390263f419b9e5ba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15008,8 +15008,28 @@ PrefabInstance:
       value: 66.45
       objectReference: {fileID: 0}
     - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: lengthInSec
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
       propertyPath: NoiseModule.strength.scalar
-      value: 2.15
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 23323
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime2
+      value: 28527
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime3
+      value: 33924
       objectReference: {fileID: 0}
     - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
@@ -15034,6 +15054,10 @@ PrefabInstance:
     - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key3.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759083564357053487, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4952479468758032361, guid: d05aee829f6589844b6c924e5e69120c, type: 3}
       propertyPath: m_LocalPosition.x

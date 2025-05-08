@@ -8,11 +8,11 @@ public class DisplaySetting : MonoBehaviour
 
     private void Awake()
     {
-        dropdown.ClearOptions();
-        List<string> optionsList = new List<string> { "Splitscreen" };
+        List<string> optionsList = new List<string> { };
         for (int i = 0; i < Display.displays.Length - 1; i++)
             optionsList.Add("Display " + (i + 1));
-        dropdown.AddOptions(optionsList);
+        if (optionsList.Count > 0)
+            dropdown.AddOptions(optionsList);
 
         if (PlayerPrefs.HasKey("PreferredDisplay"))
             dropdown.value = PlayerPrefs.GetInt("PreferredDisplay");

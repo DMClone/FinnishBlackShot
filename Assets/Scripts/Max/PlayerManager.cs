@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 
     private Dictionary<Camera, PlayerInput> camerasLinkedToPlayers = new();
 
+    private int players = 0;
+    [SerializeField] private TMPro.TextMeshProUGUI playersText;
+    
     private void Awake()
     {
         // Singleton pattern implementation
@@ -55,6 +58,8 @@ public class PlayerManager : MonoBehaviour
                 break;
             }
         }
+        players++;
+        playersText.text = "Players Joined: " + players.ToString();
     }
 
     public void OnPlayerLeave(PlayerInput input)

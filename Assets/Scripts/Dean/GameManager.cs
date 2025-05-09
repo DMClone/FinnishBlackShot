@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerManager playerManager;
 
+    [SerializeField] private AudioSource drawCardSource, shuffleCardsSource;
+
+    [SerializeField] private GameObject restartGameUI;
+
     private void Awake()
     {
         // Singleton pattern implementation
@@ -52,12 +56,14 @@ public class GameManager : MonoBehaviour
             player1 = input.gameObject.GetComponent<DrawCards>();
             player1GameOverText = player1.GetComponent<DrawCards>().gameOverText;
             player1Text = player1.GetComponent<DrawCards>().playerText;
+            player1Text.text = "Player 1";
         }
         else if (player2 == null)
         {
             player2 = input.gameObject.GetComponent<DrawCards>();
             player2GameOverText = player2.GetComponent<DrawCards>().gameOverText;
             player2Text = player2.GetComponent<DrawCards>().playerText;
+            player2Text.text = "Player 2";
         }
         else
         {
@@ -87,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(currentPlayer.name);
         currentPlayer.DrawCard();
+        drawCardSource.Play();
         if (currentPlayer.aceValueChoice.activeSelf) return;
 
         if (currentPlayer.count > 21)
@@ -234,5 +241,18 @@ public class GameManager : MonoBehaviour
     public bool GameStarted()
     {
         return gameStarted;
+    }
+
+    public void RestartGame()
+    {
+        player1GameOverText.text = "";
+        player2GameOverText.text = "";
+        player1Text.color = Color.white;
+        player2Text.color = Color.white;
+        gameOver = false;
+        gameStarted = false;
+        currentPlayer = null;
+        wonPlayer = null;
+        lostPlayer = null;
     }
 }

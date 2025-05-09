@@ -10,7 +10,7 @@ public enum LookingDir
 public class EyeFollow : MonoBehaviour
 {
     public GameObject[] eyes;
-    [SerializeField] private Transform downTrans, otherPlayerTrans;
+    [SerializeField] public Transform downTrans, otherPlayerTrans;
 
     [SerializeField] private float _speed;
     public LookingDir lookingDir;

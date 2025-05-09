@@ -60,6 +60,11 @@ public class PlayerManager : MonoBehaviour
         }
         players++;
         playersText.text = "Players Joined: " + players.ToString();
+        if (players >= 2)
+        {
+            cameras[0].transform.GetChild(0).gameObject.GetComponent<EyeFollow>().otherPlayerTrans = cameras[1].transform;
+            cameras[1].transform.GetChild(1).gameObject.GetComponent<EyeFollow>().otherPlayerTrans = cameras[0].transform;
+        }
     }
 
     public void OnPlayerLeave(PlayerInput input)

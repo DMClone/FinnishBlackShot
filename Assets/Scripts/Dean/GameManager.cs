@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
         {
             currentPlayer.playerText.color = Color.red;
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            SwitchPlayerState();
             currentPlayer.playerText.color = Color.green;
 
             if (!currentPlayer.stand)
@@ -257,19 +258,13 @@ public class GameManager : MonoBehaviour
     {
         if (currentPlayer == player1)
         {
-            player2.GetComponent<EyeFollow>().LookDown();
+            player1.GetComponent<EyeFollow>().LookDown();
+            player2.GetComponent<EyeFollow>().LookAtOtherPlayer();
         }
         else
         {
-
-        }
-        if (currentPlayer == player2)
-        {
-            currentPlayer.GetComponent<EyeFollow>().LookDown();
-        }
-        else
-        {
-            player1.GetComponent<EyeFollow>().LookAtOtherPlayer;
+            player2.transform.GetComponent<EyeFollow>().LookDown();
+            player1.GetComponent<EyeFollow>().LookAtOtherPlayer();
         }
     }
 }

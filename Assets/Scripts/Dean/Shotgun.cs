@@ -8,6 +8,8 @@ public class Shotgun : MonoBehaviour
     public int loadedRounds = 1;
     public List<bool> shots = new List<bool>();
     public Animator shotgunAnimator;
+    public ParticleSystem shotgunParticleSystem;
+    public AudioSource shotgunAudioSource;
 
     private void Start()
     {
@@ -26,5 +28,11 @@ public class Shotgun : MonoBehaviour
         }
 
         shots = shots.OrderBy(x => Random.value).ToList();
+    }
+
+    public void Shoot()
+    {
+        shotgunParticleSystem.Play();
+        shotgunAudioSource.Play();
     }
 }

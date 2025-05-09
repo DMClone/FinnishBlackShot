@@ -9,6 +9,8 @@ public class PlayerCamera : MonoBehaviour
     private PlayerInputHandler playerInputHandler;
     private InputAction look;
     private InputDevice device;
+
+    [SerializeField] private float maxRotation = 20f, speed = 4f;
     private void Awake()
     {
         playerInputHandler = GetComponent<PlayerInputHandler>();
@@ -50,11 +52,12 @@ public class PlayerCamera : MonoBehaviour
 
     private void MouseCameraMove()
     {
-        
+        Vector2 mousePosition = look.ReadValue<Vector2>();
     }
 
     private void GamePadCameraMove()
     {
+        Vector2 gamePadRotation = look.ReadValue<Vector2>();
 
     }
 }

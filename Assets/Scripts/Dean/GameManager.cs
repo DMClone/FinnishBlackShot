@@ -169,7 +169,6 @@ public class GameManager : MonoBehaviour
 
     public void AceValue(GameObject player, int v)
     {
-        Debug.Log(currentPlayer.name);
         if (currentPlayer.gameObject == player || !currentPlayer.aceValueChoice.activeSelf) return;
         currentPlayer.count += v;
         currentPlayer.aceValueChoice.SetActive(false);

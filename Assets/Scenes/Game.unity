@@ -1708,7 +1708,6 @@ GameObject:
   - component: {fileID: 1069314674}
   - component: {fileID: 1069314673}
   - component: {fileID: 1069314676}
-  - component: {fileID: 1069314677}
   m_Layer: 0
   m_Name: Player1
   m_TagString: MainCamera
@@ -1834,29 +1833,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &1069314677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069314672}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6d97c33832b0c4c9feb658cf8be462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: []
-  count: 0
-  stand: 0
-  playerText: {fileID: 0}
-  gameOverText: {fileID: 0}
-  aceValueChoice: {fileID: 0}
-  handAnchor: {fileID: 0}
-  cardSpacing: -0.07
-  currentValueText: {fileID: 0}
-  currentCard: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!114 &1103171847 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4879447919351307085, guid: 875e7598fb2f42a458ae57acddbd774a, type: 3}
@@ -3452,7 +3428,6 @@ GameObject:
   - component: {fileID: 1916144892}
   - component: {fileID: 1916144891}
   - component: {fileID: 1916144890}
-  - component: {fileID: 1916144889}
   m_Layer: 0
   m_Name: Player2
   m_TagString: MainCamera
@@ -3460,29 +3435,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1916144889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916144888}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6d97c33832b0c4c9feb658cf8be462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: []
-  count: 0
-  stand: 0
-  playerText: {fileID: 0}
-  gameOverText: {fileID: 0}
-  aceValueChoice: {fileID: 0}
-  handAnchor: {fileID: 0}
-  cardSpacing: -0.07
-  currentValueText: {fileID: 0}
-  currentCard: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!114 &1916144890
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
+  lookRef: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  maxRotation: 20
+  speed: 20
 --- !u!114 &6115812079586521690
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,8 +23,6 @@ public class PlayerManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        playerInputManager = GetComponent<PlayerInputManager>();
     }
 
     private void OnEnable()
@@ -62,5 +60,10 @@ public class PlayerManager : MonoBehaviour
     public void OnPlayerLeave(PlayerInput input)
     {
         camerasLinkedToPlayers.Remove(input.gameObject.GetComponent<PlayerCamera>().playerCamera);
+    }
+
+    public bool EnoughPlayersJoined()
+    {
+        return camerasLinkedToPlayers.Count >= 2;
     }
 }

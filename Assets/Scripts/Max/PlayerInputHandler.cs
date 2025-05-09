@@ -56,27 +56,36 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void HandleAction(InputAction.CallbackContext context, System.Action<GameObject> action)
     {
+        if (!GameStarted()) return;
         action?.Invoke(gameObject);
     }
 
     private void OnLeftArrowAction(InputAction.CallbackContext context)
     {
+        if (!GameStarted()) return;
         // Invoke the event with a hardcoded value of 1
         OnLeftArrowPerformed?.Invoke(gameObject, 1);
     }
 
     private void OnRightArrowAction(InputAction.CallbackContext context)
     {
+        if (!GameStarted()) return;
         // Invoke the event with a hardcoded value of 11
         OnRightArrowPerformed?.Invoke(gameObject, 11);
     }
 
     private void HandleAction(InputAction.CallbackContext context, System.Action<Vector2> action)
     {
+        if (!GameStarted()) return;
         if (action != null)
         {
             Vector2 input = context.ReadValue<Vector2>();
             action.Invoke(input);
         }
+    }
+
+    private bool GameStarted()
+    {
+        return GameManager.Instance.GameStarted();
     }
 }

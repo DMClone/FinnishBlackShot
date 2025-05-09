@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject restartButton;
 
     private DrawCards currentPlayer;
-    private bool gameOver = false;
+    private bool gameOver = false, gameStarted = false;
     private DrawCards lostPlayer;
     private DrawCards wonPlayer;
     private int animationNumber;
+
+    [SerializeField] private PlayerManager playerManager;
 
     private void Awake()
     {
@@ -35,12 +37,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerManager.Instance.playerInputManager.onPlayerJoined += OnPlayerJoined;
+        playerManager.playerInputManager.onPlayerJoined += OnPlayerJoined;
     }
 
     private void OnDisable()
     {
-        PlayerManager.Instance.playerInputManager.onPlayerJoined -= OnPlayerJoined;
+        playerManager.playerInputManager.onPlayerJoined -= OnPlayerJoined;
     }
 
     public void OnPlayerJoined(PlayerInput input)
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        gameStarted = true;
         NextRound();
     }
 
@@ -226,5 +229,10 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public bool GameStarted()
+    {
+        return gameStarted;
     }
 }

@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerManager playerManager;
 
+    [SerializeField] private AudioSource audioSource;
+
     private void Awake()
     {
         // Singleton pattern implementation
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(currentPlayer.name);
         currentPlayer.DrawCard();
+        audioSource.Play();
         if (currentPlayer.aceValueChoice.activeSelf) return;
 
         if (currentPlayer.count > 21)

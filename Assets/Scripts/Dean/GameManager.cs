@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver) return;
         if (CheckPlayer(player)) return;
-        
+
         currentPlayer.stand = true;
         SwitchTurn();
     }
@@ -251,5 +251,25 @@ public class GameManager : MonoBehaviour
         currentPlayer = null;
         wonPlayer = null;
         lostPlayer = null;
+    }
+
+    private void SwitchPlayerState()
+    {
+        if (currentPlayer == player1)
+        {
+            player2.GetComponent<EyeFollow>().LookDown();
+        }
+        else
+        {
+
+        }
+        if (currentPlayer == player2)
+        {
+            currentPlayer.GetComponent<EyeFollow>().LookDown();
+        }
+        else
+        {
+            player1.GetComponent<EyeFollow>().LookAtOtherPlayer;
+        }
     }
 }

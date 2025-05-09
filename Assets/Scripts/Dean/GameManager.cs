@@ -25,9 +25,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private AudioSource drawCardSource, shuffleCardsSource;
 
-    [SerializeField] private GameObject restartGameUI;
-
-
     private void Awake()
     {
         // Singleton pattern implementation

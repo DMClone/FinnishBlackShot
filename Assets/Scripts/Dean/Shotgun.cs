@@ -10,6 +10,8 @@ public class Shotgun : MonoBehaviour
     public Animator shotgunAnimator;
     public ParticleSystem shotgunParticleSystem;
     public AudioSource shotgunAudioSource;
+    public Transform shellExit;
+    public GameObject shotgunShell;
 
     private void Start()
     {
@@ -34,5 +36,6 @@ public class Shotgun : MonoBehaviour
     {
         shotgunParticleSystem.Play();
         shotgunAudioSource.Play();
+        Instantiate(shotgunShell, shellExit.position, shotgunShell.transform.rotation);
     }
 }

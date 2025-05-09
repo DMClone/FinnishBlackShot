@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject restartGameUI;
 
+
     private void Awake()
     {
         // Singleton pattern implementation

@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1060844291752043225, guid: fddc3f13cc2ef51479c14c7da84936ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 1060844291752043225, guid: fddc3f13cc2ef51479c14c7da84936ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -228,6 +228,10 @@ PrefabInstance:
     - target: {fileID: 1060844291752043225, guid: fddc3f13cc2ef51479c14c7da84936ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776564791455015661, guid: fddc3f13cc2ef51479c14c7da84936ed, type: 3}
+      propertyPath: m_Intensity
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1471,6 +1475,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6072468752254145215, guid: 9ecc26ba7839c1b429c6a7492526b7ff, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072468752254145215, guid: 9ecc26ba7839c1b429c6a7492526b7ff, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1918,7 +1930,6 @@ MonoBehaviour:
   playerManager: {fileID: 1103171848}
   drawCardSource: {fileID: 1193284719}
   shuffleCardsSource: {fileID: 1193284720}
-  restartGameUI: {fileID: 0}
 --- !u!82 &1193284719
 AudioSource:
   m_ObjectHideFlags: 0

@@ -23,8 +23,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerManager playerManager;
 
+<<<<<<< Updated upstream
     [SerializeField] private AudioSource audioSource;
 
+=======
+>>>>>>> Stashed changes
     private void Awake()
     {
         // Singleton pattern implementation

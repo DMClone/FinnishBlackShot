@@ -9,6 +9,7 @@ public enum LookingDir
 
 public class EyeFollow : MonoBehaviour
 {
+    public GameObject[] eyes;
     [SerializeField] private Transform downTrans, otherPlayerTrans;
 
     [SerializeField] private float _speed;
@@ -27,15 +28,19 @@ public class EyeFollow : MonoBehaviour
     private void Update()
     {
         //     Quaternion targetRotation;
-        Vector3 targetPosition;
-        if (lookingDir == LookingDir.Down)
-            targetPosition = (downTrans.position - gameObject.transform.position).normalized;
-        else
-            targetPosition = (otherPlayerTrans.position - gameObject.transform.position).normalized;
+        for (int i = 0; i < eyes.Length; i++)
+        {
+            Vector3 targetPosition;
+            if (lookingDir == LookingDir.Down)
+                targetPosition = (downTrans.position - eyes[i].transform.position).normalized;
+            else
+                targetPosition = (otherPlayerTrans.position - eyes[i].transform.position).normalized;
 
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetPosition, _speed * Time.deltaTime, 0.0F);
+            Vector3 newDir = Vector3.RotateTowards(eyes[i].transform.forward, targetPosition, _speed * Time.deltaTime, 0.0F);
 
-        transform.rotation = Quaternion.LookRotation(newDir);
+            eyes[i].transform.rotation = Quaternion.LookRotation(newDir);
+        }
+
 
         // transform.LookAt(targetPosition * Time.deltaTime);
 
